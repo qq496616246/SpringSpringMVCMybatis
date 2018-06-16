@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SpringSpringMVCMybatis:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/SpringSpringMVCMybatis_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="SpringSpringMVCMybatis/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SpringSpringMVCMybatis" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <!-- 配置 读取properties文件 jdbc.properties -->
+    <context:property-placeholder location="classpath:resource/jdbc.properties" />
+    <!-- 自动扫描所有的注解 -->
+    <context:component-scan base-package="com.hnu.scw"/>
+
+    <!-- 配置阿里的druid数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!-- 配置SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 设置数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 设置MyBatis核心配置文件 -->
+        <property name="configLocation" value="classpath:resource/mybatisconfig/SqlMapConfig.xml" />
+        <!-- 设置扫描mapper.xml文件 -->
+       <property name="mapperLocations" value="classpath:resource/mapperxmlconfig/*Mapper.xml"/>
+    </bean>
+
+    <!-- 配置Mapper层java类扫描 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 设置Mapper扫描包 -->
+        <property name="basePackage" value="com.hnu.scw.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+</beans>

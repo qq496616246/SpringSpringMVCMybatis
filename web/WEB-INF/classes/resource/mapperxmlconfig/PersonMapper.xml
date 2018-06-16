@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写Sql语句   -->
+<mapper namespace="com.hnu.scw.mapper.PersonMapper">
+
+    <!-- 添加一个person数据-->
+    <insert id="addPerson" parameterType="com.hnu.scw.pojo.Person">
+        INSERT INTO person(name)
+        VALUES (
+        #{name}
+        )
+    </insert>
+</mapper>
